@@ -24,12 +24,12 @@
             {
                 "tag": "proxydns",
                 "address": "tls://8.8.8.8/dns-query",
-                "detour": "select"
+                "detour": "🚀 节点选择"
             },
             {
                 "tag": "localdns",
                 "address": "h3://223.5.5.5/dns-query",
-                "detour": "direct"
+                "detour": "🎯 全球直连"
             },
             {
                 "address": "rcode://refused",
@@ -193,6 +193,32 @@
             "uuid": "b1c5a261-02af-4063-b34c-312bc3bfa558"
         },
     {
+            "server": "wto.org",
+            "server_port": 443,
+            "tag": "🇰🇷 narajjang-cf",
+            "tls": {
+                "enabled": true,  
+                "server_name": "jjangnara.pages.dev",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "transport": {
+                "headers": {
+                    "Host": [
+                        "jjangnara.pages.dev"
+                    ]
+                },
+                "path": "/?ed=2048",
+                "type": "ws"
+            },
+            "type": "vless",
+            "uuid": "b1c5a261-02af-4063-b34c-312bc3bfa558"
+            "detour": "🇰🇷 narajjang"
+        },
+    {
       "type": "vless",
       "tag": "🇰🇷 vless-reality-vision-narajjang",
       "server": "140.238.12.183",
@@ -287,7 +313,7 @@
     { "tag": "GLOBAL", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点", "🐸 手动切换"] },
     { "tag": "🎯 全球直连", "type": "direct" },
     { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["🎯 全球直连", "🐸 手动切换", "♻️ 自动选择"] },
-    { "tag": "🇰🇷 narajjang-cf", "type": "detour","outbounds": ["🇰🇷 narajjang", "cf-vlss"] },
+    { "tag": "🇰🇷 narajjang-cf", "🇰🇷 narajjang" "detour":"cf-vlss" },
     { "tag": "dns-out", "type": "dns" }
   ],
   
@@ -295,7 +321,7 @@
         "auto_detect_interface": true,
         "final": "🐟 漏网之鱼",
     "rules": [
-      { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }], "outbound": "dns-out" },
+      { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }], "outbounds": "dns-out" },
       { "clash_mode": "direct", "outbound": "🎯 全球直连" },
       { "clash_mode": "global", "outbound": "GLOBAL" },
       {
