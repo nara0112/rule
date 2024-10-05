@@ -310,7 +310,7 @@
     { "tag": "🪟 Microsoft", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"]},
     { "tag": "🍎 Apple", "type": "selector", "outbounds": ["🎯 全球直连", "🚀 节点选择"] },
     { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": ["🇰🇷 narajjang", "🇰🇷 nara", "🇰🇷 jjang", "🇰🇷 vless-reality-vision-narajjang", "🇰🇷 hysteria2-narajjang", "🇰🇷 tuic-v5", "🇰🇷 na-narajjang", "🇰🇷 narajjang-cf", "cf-vless" ], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
-    { "tag": "GLOBAL", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点", "🐸 手动切换"] },
+    { "tag": "GLOBAL", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连", "🐸 手动切换"] },
     { "tag": "🎯 全球直连", "type": "direct" },
     { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["🎯 全球直连", "🐸 手动切换", "♻️ 自动选择"] },
     { "tag": "dns-out", "type": "dns" }
