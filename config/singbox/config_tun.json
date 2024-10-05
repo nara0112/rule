@@ -268,7 +268,7 @@
                 ]
    }
 
-}
+},
     { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🐸 手动切换", "♻️ 自动选择", "🎯 全球直连"] },
     { "tag": "🐸 手动切换", "type": "selector", "outbounds": ["{all}"]},
     { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"] },
@@ -315,7 +315,7 @@
         ".acha-ndvr-mcdn.tving.com",
         ".tvn-ndvr-mcdn.tving.com",
         ".pip-vod2-xcdn.tving.com"
-      ]
+      ],
       "outbound": "🎯 全球直连"  
 },
             {
@@ -325,11 +325,11 @@
         ".app-backend.toolsforhumanity.com",
         ".worldcoin.org",
         ".zendesk.com"
-      ]
+      ],
       "outbound": "🪙 Worldcion"  
 },
-      {"domain_suffix": [".imbc.com", ".tving.com"] "outbound": "🎥 Tving" },
-      {"domain_suffix": [".wavve.com"] "outbound": "🎥 Wavve" },
+      {"domain_suffix": [".imbc.com", ".tving.com"], "outbound": "🎥 Tving" },
+      {"domain_suffix": [".wavve.com"], "outbound": "🎥 Wavve" },
       { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "🎯 全球直连" },
       { "ip_is_private": true, "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-openai", "outbound": "🤖 ChatGPT" },
