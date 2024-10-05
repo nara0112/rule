@@ -1,64 +1,255 @@
 {
   "log": {
+    "disabled": false,
     "level": "info",
     "timestamp": true
   },
   "experimental": {
     "clash_api": {
-      "external_controller": "0.0.0.0:9090",
+      "external_controller": "192.168.31.1:9999",
       "external_ui": "ui",
+      "external_ui_download_url": "",
+      "external_ui_download_detour": "",
       "secret": "",
-      "external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
-      "external_ui_download_detour": "🎯 全球直连",
-      "default_mode": "rule"
-      }
+      "default_mode": "Rule"
+       },
+      "cache_file": {
+            "enabled": true,
+            "path": "cache.db",
+            "store_fakeip": true
+        }
     },
-  "dns": {
-    "servers": [
-      {"tag": "proxyDns", "address": "tls://8.8.8.8", "address_resolver": "localDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
-      {"tag": "localDns", "address": "223.5.5.5", "detour": "🎯 全球直连"},
-      {"tag": "block", "address": "rcode://success"}
-    ],
-    "rules": [
-      {"outbound": "any", "server": "localDns", "disable_cache": true},
-      {"rule_set": "geosite-cn", "server": "localDns"},
-      {"clash_mode": "direct", "server": "localDns"},
-      {"clash_mode": "global", "server": "proxyDns"},
-      {"rule_set": "geosite-geolocation-!cn", "server": "proxyDns"}
-    ],
-    "final": "localDns",
-    "strategy": "ipv4_only"
-  },
-
-  "inbounds": [
+    "dns": {
+        "servers": [
+            {
+                "tag": "proxydns",
+                "address": "tls://8.8.8.8/dns-query",
+                "detour": "select"
+            },
+            {
+                "tag": "localdns",
+                "address": "h3://223.5.5.5/dns-query",
+                "detour": "direct"
+            },
+            {
+                "address": "rcode://refused",
+                "tag": "block"
+            },
+            {
+                "tag": "dns_fakeip",
+                "address": "fakeip"
+            }
+        ],
+        "rules": [
+            {
+                "outbound": "any",
+                "server": "localdns",
+                "disable_cache": true
+            },
+            {
+                "clash_mode": "Global",
+                "server": "proxydns"
+            },
+            {
+                "clash_mode": "Direct",
+                "server": "localdns"
+            },
+            {
+                "rule_set": "geosite-cn",
+                "server": "localdns"
+            },
+            {
+                 "rule_set": "geosite-geolocation-!cn",
+                 "server": "proxydns"
+            },
+             {
+                "rule_set": "geosite-geolocation-!cn",         
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "dns_fakeip"
+            }
+          ],
+           "fakeip": {
+           "enabled": true,
+           "inet4_range": "198.18.0.0/15",
+           "inet6_range": "fc00::/18"
+         },
+          "independent_cache": true,
+          "final": "proxydns"
+        },
+      "inbounds": [
     {
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
-      "mtu": 9000,
+      "inet6_address": "fd00::1/126",
       "auto_route": true,
       "strict_route": true,
       "sniff": true,
-      "endpoint_independent_nat": false,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
+      "sniff_override_destination": true,
+      "domain_strategy": "prefer_ipv4"
+    }
+  ],
+  "outbounds": [
+         {
+            "server": "wto.org",
+            "server_port": 443,
+            "tag": "🇰🇷 narajjang",
+            "tls": {
+                "enabled": true,  
+                "server_name": "narajjang.nara0318.us.kg",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "transport": {
+                "headers": {
+                    "Host": [
+                        "narajjang.nara0318.us.kg"
+                    ]
+                },
+                "path": "narajjang/?ed=2048",
+                "type": "ws"
+            },
+            "type": "vless",
+            "uuid": "ee6b6d45-3349-4f1d-82f3-df099154a71b"
+        },
+        {
+            "server": "wto.org",
+            "server_port": 443,
+            "tag": "🇰🇷 jjang",
+            "tls": {
+                "enabled": true,  
+                "server_name": "jjang.nara0318.us.kg",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "transport": {
+                "headers": {
+                    "Host": [
+                        "jjang.nara0318.us.kg"
+                    ]
+                },
+                "path": "nara/?ed=2048",
+                "type": "ws"
+            },
+            "type": "vless",
+            "uuid": "3eef5154-3a02-4aa6-a27b-d5e86587ba54"
+        },
+         {
+            "server": "wto.org",
+            "server_port": 443,
+            "tag": "🇰🇷 nara",
+            "tls": {
+                "enabled": true,  
+                "server_name": "nara.nara0318.us.kg",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "transport": {
+                "headers": {
+                    "Host": [
+                        "nara.nara0318.us.kg"
+                    ]
+                },
+                "path": "narajjang/?ed=2048",
+                "type": "ws"
+            },
+            "type": "vless",
+            "uuid": "1f50fced-0c57-4613-ecb5-f17b0c0defde"
+        },
+         {
+            "server": "wto.org",
+            "server_port": 443,
+            "tag": "cf-vless",
+            "tls": {
+                "enabled": true,  
+                "server_name": "jjangnara.pages.dev",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "transport": {
+                "headers": {
+                    "Host": [
+                        "jjangnara.pages.dev"
+                    ]
+                },
+                "path": "/?ed=2048",
+                "type": "ws"
+            },
+            "type": "vless",
+            "uuid": "b1c5a261-02af-4063-b34c-312bc3bfa558"
+        },
+    {
+      "type": "vless",
+      "tag": "🇰🇷 vless-reality-vision-narajjang",
+      "server": "140.238.12.183",
+      "server_port": 62807,
+      "uuid": "d886dbdf-220a-4c9b-9d44-4563dba4eb9b",
+      "packet_encoding": "xudp",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.yahoo.com",
+        "utls": {
           "enabled": true,
-          "server": "0.0.0.0",
-          "server_port": 2080
+          "fingerprint": "chrome"
+        },
+      "reality": {
+          "enabled": true,
+          "public_key": "Lx69DWsDjEKZHPHPHVsEcCXpIfGvZ_hBsnb_hT9d0k0",
+          "short_id": "4df396d8"
         }
       }
     },
     {
-      "type": "mixed",
-      "listen": "0.0.0.0",
-      "listen_port": 2080,
-      "sniff": true,
-      "users": []
-    }
-  ],
-
-  
-  "outbounds": [
+        "type": "hysteria2",
+        "tag": "🇰🇷 hysteria2-narajjang",
+        "server": "140.238.12.183",
+        "server_port": 36270,
+        "password": "d886dbdf-220a-4c9b-9d44-4563dba4eb9b",
+        "tls": {
+            "enabled": true,
+            "server_name": "www.bing.com",
+            "insecure": true,
+            "alpn": [
+                "h3"
+            ]
+        }
+    },
+        {
+            "type":"tuic",
+            "tag": "🇰🇷 tuic-v5",
+            "server": "140.238.12.183",
+            "server_port": 62039,
+            "uuid": "d886dbdf-220a-4c9b-9d44-4563dba4eb9b",
+            "password": "d886dbdf-220a-4c9b-9d44-4563dba4eb9b",
+            "congestion_control": "bbr",
+            "udp_relay_mode": "native",
+            "udp_over_stream": false,
+            "zero_rtt_handshake": false,
+            "heartbeat": "10s",
+            "tls":{
+                "enabled": true,
+                "server_name": "www.bing.com",
+                "insecure": true,
+                "alpn": [
+                    "h3"
+                ]
+            }
+        },
     { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🔯 香港自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点", "🐸 手动切换", "♻️ 自动选择", "🎯 全球直连"] },
     { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🔯 香港自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点", "🐸 手动切换"] },
     { "tag": "🤖 OpenAI", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🔯 香港自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点", "🐸 手动切换"] },
