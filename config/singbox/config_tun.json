@@ -272,7 +272,8 @@
     { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🐸 手动切换", "♻️ 自动选择", "🎯 全球直连"] },
     { "tag": "🐸 手动切换", "type": "selector", "outbounds": ["{all}"]},
     { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"] },
-    { "tag": "🤖 OpenAI", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"]},
+    { "tag": "🤖 ChatGPT", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"]},
+    { "tag": "🪙 Worldcion", "type": "selector", "outbounds": ["🇰🇷 narajjang", "🇰🇷 nara", "🇰🇷 jjang"] },
     { "tag": "🍀 Google", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"] },
     { "tag": "📲 Telegram", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"]},
     { "tag": "🎵 TikTok", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🐸 手动切换", "🎯 全球直连"] },
@@ -296,12 +297,41 @@
       { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }], "outbound": "dns-out" },
       { "clash_mode": "direct", "outbound": "🎯 全球直连" },
       { "clash_mode": "global", "outbound": "GLOBAL" },
-      { "domain_suffix": [".weixinsxy.com",".wxapp.tc.qq.com"
+      {
+      "domain_suffix": [
+        ".mbcdownload.imbc.com",
+        ".2tvhd.gscdn.kbs.co.kr",
+        ".mbn-mcdn.tving.com,",
+        ".quickvod-mcdn.tving.com",
+        ".jtbc-mcdn.tving.com",
+        ".acha-mcdn.tving.com",
+        ".ocn-drm.tving.com",
+        ".tvn-mcdn.tving.com",
+        ".chuson-mcdn.tving.com",
+        ".chosun-ndvr-mcdn.tving.com",
+        ".mbn-ndvr-mcdn.tving.com",
+        ".jtbc-ndvr-mcdn.tving.com",
+        ".acha-ndvr-mcdn.tving.com",
+        ".tvn-ndvr-mcdn.tving.com",
+        ".pip-vod2-xcdn.tving.com"
       ]
-    },
+      "outbound": "🎯 全球直连"  
+},
+            {
+        "domain_suffix": [
+        ".world-id-assets.com",
+        ".braze-images.com",
+        ".app-backend.toolsforhumanity.com",
+        ".worldcoin.org",
+        ".zendesk.com"
+      ]
+      "outbound": "🪙 Worldcion"  
+},
+      {"domain_suffix": [".imbc.com", ".tving.com"] "outbound": "🎥 Tving" },
+      {"domain_suffix": [".wavve.com"] "outbound": "🎥 Wavve" },
       { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "🎯 全球直连" },
       { "ip_is_private": true, "outbound": "🎯 全球直连" },
-      { "rule_set": "geosite-openai", "outbound": "🤖 OpenAI" },
+      { "rule_set": "geosite-openai", "outbound": "🤖 ChatGPT" },
       { "rule_set": "geosite-youtube", "outbound": "📹 YouTube" },
       { "rule_set": ["geoip-google", "geosite-google"], "outbound": "🍀 Google" },
       { "rule_set": ["geoip-telegram", "geosite-telegram"], "outbound": "📲 Telegram" },
