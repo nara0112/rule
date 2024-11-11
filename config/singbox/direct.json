@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+         "mbcdownload.imbc.com",
+					"2tvhd.gscdn.kbs.co.kr",
+					"mbn-mcdn.tving.com",
+					"quickvod-mcdn.tving.com",
+					"jtbc-mcdn.tving.com",
+					"acha-mcdn.tving.com",
+					"ocn-drm.tving.com",
+					"tvn-mcdn.tving.com",
+					"chuson-mcdn.tving.com",
+					"chosun-ndvr-mcdn.tving.com",
+					"mbn-ndvr-mcdn.tving.com",
+					"jtbc-ndvr-mcdn.tving.com",
+					"acha-ndvr-mcdn.tving.com",
+					"tvn-ndvr-mcdn.tving.com",
+					"pip-vod2-xcdn.tving.com"
+      ]
+    }
+  ]
+}
