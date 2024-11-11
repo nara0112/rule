@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+         "v2rayssr.com",
+					"cloudflare.com"
+				
+      ]
+    }
+  ]
+}
